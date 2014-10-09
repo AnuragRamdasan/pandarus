@@ -5038,8 +5038,13 @@ module Pandarus
       path = path_replace("/v1/courses/{id}",
         :id => id)
       headers = nil
-      form_params = select_params(options, form_param_keys)
-      query_params = select_params(options, query_param_keys)
+
+      form_params = {}
+      query_params = {}
+
+      form_params[:course] = select_params(options[:course], form_param_keys)
+      query_params[:course] = select_params(options, query_param_keys)
+
       if opts[:next_page]
         pagination_params = page_params_load(:put, path)
         query_params.merge! pagination_params if pagination_params
