@@ -5024,7 +5024,7 @@ module Pandarus
 
       form_param_keys = [
         :course__grading_standard_id__,
-        
+        :start_at, 
       ]
 
       # verify existence of params
