@@ -34,7 +34,11 @@ module Pandarus
     def vivify(constant_name, value)
       klass = begin
         # Try Ruby built-in constants first
-        constant_name.constantize unless (Pandarus::Config.exclude_user_vivify && (constant_name == 'User'))
+        if !(Pandarus::Config.exclude_user_vivify && (constant_name == 'User'))
+          constant_name.constantize
+        else
+          raise NameError
+        end
       rescue NameError
         # Pandarus models second
         "Pandarus::#{constant_name}".constantize
